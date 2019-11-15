@@ -11,6 +11,10 @@
 #define PCA9685_PRESCALE  0xFE
 
 #define FIRST_LED_ADDR    0x06
+#define ALLLED_ON_L       0xFA              // load all the LEDn_ON registers, byte 0 (turn 0-7 channels on)
+#define ALLLED_ON_H       0xFB              // load all the LEDn_ON registers, byte 1 (turn 8-15 channels on)
+#define ALLLED_OFF_L      0xFC              // load all the LEDn_OFF registers, byte 0 (turn 0-7 channels off)
+#define ALLLED_OFF_H      0xFD              // load all the LEDn_OFF registers, byte 1 (turn 8-15 channels off)
 
 class PCA9685 
 {
@@ -22,13 +26,16 @@ class PCA9685
       void setPwmFreq(float);
       void setLedPwm(unsigned char, unsigned int, unsigned int);
       void setLedDutyCycle(unsigned char, unsigned int);
+      void allLedsOff();
+      void allLedsOn();
 
       void initPCA9685Ext(unsigned char);
       void resetPCA9685Ext(unsigned char);
       void setPwmFreqExt(unsigned char, float);
       void setLedPwmExt(unsigned char, unsigned char, unsigned int, unsigned int);
       void setLedDutyCycleExt(unsigned char, unsigned char, unsigned int);
-
+      void allLedsOffExt(unsigned char);
+      void allLedsOnExt(unsigned char);
 
   private:
       unsigned char i2c_address;

@@ -12,12 +12,13 @@ class Battery
       Battery();
       void init();
       void updateCellVoltage(unsigned char, float);
-     
+      float getCellVoltage(unsigned char);
+      void getAllCellVoltages(void*);
+      
       float cell_voltage[NUMBER_OF_CELLS];
-      float maf_buffer[NUMBER_OF_CELLS][MAF_BUFFER_LEN];
       
   private:
-
+      float _maf_buffer[NUMBER_OF_CELLS][MAF_BUFFER_LEN];
       
 
 };
