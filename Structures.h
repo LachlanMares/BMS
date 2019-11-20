@@ -5,7 +5,8 @@
 
 #define NUMBER_OF_CELLS                   40
 #define MAX_DUTY_CYCLE                    100
-#define DUTY_CYCLE_DEADBAND               10
+#define PCA9685_DEADBAND                  400
+#define PCA9685_MAXVALUE                  4095 
 
 typedef struct{
   unsigned int duty_cycles[NUMBER_OF_CELLS];

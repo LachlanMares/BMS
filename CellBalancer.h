@@ -20,15 +20,13 @@ class CellBalancer: public PCA9685
       void init(float);
       void enable();
       void disable();
+      void allOff();
       void setCellDutyCycle(unsigned char, unsigned char);
-      unsigned char getCellDutyCycle(unsigned char, unsigned char*);
       void updateCellBalancer(float, void*);
-      
-      unsigned char duty_cycle[NUMBER_OF_CELLS];
+
   private:
- 
       boolean _disabled;
-      unsigned char _enable_pin;
+      unsigned char _enable_pin, _number_of_pcas;
 
 
 };

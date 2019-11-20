@@ -110,7 +110,7 @@ void PCA9685::setLedDutyCycleExt(unsigned char i2c_addr, unsigned char led_numbe
 void PCA9685::allLedsOff()
 {
   unsigned int _value_on = 0;
-  unsigned int _value_off = 4096;
+  unsigned int _value_off = 4095;
 
   Wire.beginTransmission(i2c_address);
   Wire.write(ALLLED_ON_L);
@@ -124,7 +124,7 @@ void PCA9685::allLedsOff()
 void PCA9685::allLedsOffExt(unsigned char i2c_addr)
 {
   unsigned int _value_on = 0;
-  unsigned int _value_off = 4096;
+  unsigned int _value_off = 4095;
 
   Wire.beginTransmission(i2c_addr);
   Wire.write(ALLLED_ON_L);
@@ -137,7 +137,7 @@ void PCA9685::allLedsOffExt(unsigned char i2c_addr)
 
 void PCA9685::allLedsOn()
 {
-  unsigned int _value_on = 4096;
+  unsigned int _value_on = 4095;
   unsigned int _value_off = 0;
 
   Wire.beginTransmission(i2c_address);
@@ -151,7 +151,7 @@ void PCA9685::allLedsOn()
 
 void PCA9685::allLedsOnExt(unsigned char i2c_addr)
 {
-  unsigned int _value_on = 4096;
+  unsigned int _value_on = 4095;
   unsigned int _value_off = 0;
 
   Wire.beginTransmission(i2c_addr);
@@ -161,6 +161,44 @@ void PCA9685::allLedsOnExt(unsigned char i2c_addr)
   Wire.write(_value_off);
   Wire.write(_value_off>>8);
   Wire.endTransmission();
+}
+
+void PCA9685::writeAllLeds(unsigned int* data)
+{
+  unsigned int _value_on;
+  unsigned int _value_off;
+  
+  Wire.beginTransmission(i2c_address);
+  Wire.write(FIRST_LED_ADDR);
+  for(int j=0;j<16;j++)
+  {
+    _value_on = data[j];
+    _value_off = 4095 - _value_on;
+    Wire.write(_value_on);
+    Wire.write(_value_on>>8);
+    Wire.write(_value_off);
+    Wire.write(_value_off>>8);
+  }
+  Wire.endTransmission();  
+}
+
+void PCA9685::writeAllLedsExt(unsigned char i2c_addr, unsigned int* data)
+{
+  unsigned int _value_on;
+  unsigned int _value_off;
+  
+  Wire.beginTransmission(i2c_addr);
+  Wire.write(FIRST_LED_ADDR);
+  for(int j=0;j<16;j++)
+  {
+    _value_on = data[j];
+    _value_off = 4095 - _value_on;
+    Wire.write(_value_on);
+    Wire.write(_value_on>>8);
+    Wire.write(_value_off);
+    Wire.write(_value_off>>8);
+  }
+  Wire.endTransmission();  
 }
 
 unsigned char PCA9685::i2cRead(unsigned char register_address) 

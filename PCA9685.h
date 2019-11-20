@@ -28,6 +28,7 @@ class PCA9685
       void setLedDutyCycle(unsigned char, unsigned int);
       void allLedsOff();
       void allLedsOn();
+      void writeAllLeds(unsigned int*);
 
       void initPCA9685Ext(unsigned char);
       void resetPCA9685Ext(unsigned char);
@@ -36,6 +37,7 @@ class PCA9685
       void setLedDutyCycleExt(unsigned char, unsigned char, unsigned int);
       void allLedsOffExt(unsigned char);
       void allLedsOnExt(unsigned char);
+      void writeAllLedsExt(unsigned char, unsigned int*);
 
   private:
       unsigned char i2c_address;
