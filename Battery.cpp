@@ -40,6 +40,6 @@ float Battery::getCellVoltage(unsigned char cell_number)
 
 void Battery::getAllCellVoltages(void* voltages)
 {
-  memcpy(voltages,&cell_voltage,sizeof(float)*NUMBER_OF_CELLS);
+  memcpy(voltages, &cell_voltage, sizeof(float)*NUMBER_OF_CELLS);
 }
 

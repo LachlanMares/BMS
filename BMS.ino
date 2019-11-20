@@ -13,7 +13,7 @@
 #define PCA9685_ADDR_1        0x41
 #define PCA9685_ADDR_2        0x42
 
-#define NUMBER_OF_CELLS       40
+
 #define MCP_OUTPUTS           0x00
 #define MCP_INPUTS            0xFF
 #define MCP_PULLUP_ALL        0xFF
@@ -28,7 +28,7 @@
 #define BALANCER_ENABLE_PIN   9
 
 Battery battery;
-CellBalancer balancer(NUMBER_OF_CELLS, BALANCER_ENABLE_PIN); 
+CellBalancer balancer(BALANCER_ENABLE_PIN); 
 MCP23008 mcp23008;
 MCP2515 canbus;
 
